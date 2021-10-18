@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%include '../component/head.html'%}
+    <title>Register - Todo App</title>
+  </head>
+  <body>
+    <input checked="" type="checkbox" id="my-modal-2" class="modal-toggle"> 
+    <div class="modal modal-open">
+      <div class="modal-box">
+        <form action="{%url 'addregister'%}" method="post">
+          {%csrf_token%}
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Username</span>
+            </label> 
+            <input name="username" type="text" placeholder="Your Username" class="input input-primary input-bordered">
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Email</span>
+            </label> 
+            <input name="email" type="text" placeholder="Your Email" class="input input-primary input-bordered">
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Password</span>
+            </label> 
+            <input name="password" type="password" placeholder="Your Password" class="input input-primary input-bordered">
+          </div>
+          <div class="modal-action">
+            <button type="submit" class="btn btn-primary">submit</button> 
+            <a href="/" class="btn">Back To Home</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

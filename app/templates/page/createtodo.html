@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%include '../component/head.html'%}
+    {%if todo.id%}
+    <title>Update - Todo App</title>
+    {%else%}
+    <title>Create - Todo App</title>
+    {%endif%}
+  </head>
+  <body>
+    <input checked="" type="checkbox" id="my-modal-2" class="modal-toggle"> 
+    <div class="modal modal-open">
+      <div class="modal-box">
+        <form action="{%url 'addtodo'%}" method="post">
+          {%csrf_token%}
+          <input type="text" name="id" class="hidden" value="{{todo.id}}">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Title</span>
+            </label>
+            <input value="{{todo.title}}" name="title" type="text" placeholder="Required *" class="input input-primary input-bordered">
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Content</span>
+            </label> 
+            <textarea name="content" placeholder="Required *" class="textarea h-24 textarea-bordered textarea-primary">{{todo.content}}</textarea>
+          </div>
+          <div class="modal-action">
+            {%if todo.id%}
+            <a href="{%url 'deletetodo' todo.id%}" class="btn btn-secondary">remove</a>
+            {%endif%}
+            <button type="submit" class="btn btn-primary">save</button> 
+            <a href="/" class="btn">Back To Home</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
