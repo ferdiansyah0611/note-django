@@ -47,14 +47,17 @@
           <div class="dropdown dropdown-end">
             <div tabindex="0" class="m-1 btn btn-ghost">{{user.username}}</div> 
             <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"> 
-              <li class="lg:hidden">
+              <li class="lg:hidden hover-bordered">
                 <a target="_blank" href="https://portfolio-one-alpha-72.vercel.app/">About</a>
               </li>
-              <li class="lg:hidden">
+              <li class="lg:hidden hover-bordered">
                 <a target="_blank" href="https://commerce.coinbase.com/checkout/e9bc198a-71b3-498b-88bf-b1394c207e70">Donate</a>
               </li>
               <div class="divider lg:hidden">Account</div>
-              <li>
+              <li class="hover-bordered">
+                <a href="{%url 'create'%}">Create Todo</a>
+              </li>
+              <li class="hover-bordered">
                 <a href="{%url 'signout'%}">Logout</a>
               </li>
             </ul>
@@ -64,7 +67,18 @@
     </div>
     <div id="body" class="mt-20 p-3 min-h-screen">
       <section class="mb-3">
-        <a href="/todo/create" class="btn btn-secondary">add new todo</a>
+        <div class="w-full mt-2 border stats border-base-300">
+          <div class="stat">
+            <div class="stat-figure text-primary">
+              <button class="btn loading btn-circle btn-lg bg-base-200 btn-ghost"></button>
+            </div> 
+            <div class="stat-value">{{count}}/1000</div> 
+            <div class="stat-title">Data Created</div> 
+            <div class="stat-desc">
+              <progress value="{{progress}}" max="100" class="progress progress-secondary"></progress>
+            </div>
+          </div>
+        </div>
       </section>
       <section>
         <div class="grid grid-flow-cols grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">

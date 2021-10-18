@@ -14,11 +14,12 @@ def is_user(user):
 def index(request):
 	detect = is_user(request.user)
 	if detect:
-		todo = []
-		_from = 0
-		maxpage = 10
-		onnext = False
-		onsearch = False
+		todo 		= []
+		_from 		= 0
+		maxpage 	= 12
+		onnext 		= False
+		onsearch 	= False
+		count		= Todo.objects.filter(user_id = request.user.id).count()
 		if request.GET.get('search') is not None:
 			onsearch = request.GET.get('search')
 			if request.GET.get('from') is not None:
@@ -38,7 +39,9 @@ def index(request):
 			"from": abs(_from - maxpage),
 			"to": _from + maxpage,
 			"onnext": onnext,
-			"onsearch": onsearch
+			"onsearch": onsearch,
+			"count": count,
+			"progress": int((1000 - count) / 10)
 		})
 	else:
 		return redirect('/login')
@@ -71,10 +74,18 @@ def delete(request, todo):
 		return redirect('/login')
 
 def login(request):
-	return render(request, "page/login.html")
+	detect = is_user(request.user)
+	if detect == False:
+		return render(request, "page/login.html")
+	else:
+		return redirect('/')
 
 def register(request):
-	return render(request, "page/register.html")
+	detect = is_user(request.user)
+	if detect == False:
+		return render(request, "page/register.html")
+	else:
+		return redirect('/')
 
 def addtodo(request):
 	detect = is_user(request.user)
